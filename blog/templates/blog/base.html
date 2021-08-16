@@ -49,20 +49,25 @@
                   <div class=" col-lg-9 col-md-7">
                   {% block content %}
                   {% endblock %}
+                   <div class="row">
+                     <div class="col-md-7">
+                      <form action="">
+                        <h3 style="color: white;">Envianos tu comentario</h3>
+          
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label" id="email" style="color: white;"></label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email@">
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label"></label>
+                            <textarea class="form-control" id="comentario" rows="4" placeholder="Tu comentario.." ></textarea>
+                            <button id="btnEnviar" onclick="limpiarFormulario()" class="form-control btn btn-secondary mt-3" type="reset" style="font-size: large;">Enviar</button>
+                          </div>
+                        </form>
+                     </div>
+                     <div class="col-md-5"></div>
+                   </div> 
 
-                  <form action="">
-                  <h3 style="color: white;">Envianos tu comentario</h3>
-    
-                  <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label" id="email" style="color: white;"></label>
-                      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email@">
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleFormControlTextarea1" class="form-label"></label>
-                      <textarea class="form-control" id="comentario" rows="4" placeholder="Tu comentario.." ></textarea>
-                      <button id="btnEnviar" onclick="limpiarFormulario()" class="form-control btn btn-secondary mt-3" type="reset" style="font-size: large;">Enviar</button>
-                    </div>
-                  </form>
 
                   </div>
                   <div class=" col-md-5 col-lg-3 ">
