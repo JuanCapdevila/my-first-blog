@@ -64,3 +64,6 @@ p{
 .barra{
     background-color: #1884F8;
 }
+.jumbotron {
+    min-height: 300px;
+}
