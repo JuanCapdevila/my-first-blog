@@ -1,64 +1,165 @@
 {% load static %}
-<html>
-    <head>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>www.CriptoNoticias.com</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-        <div class="page-header">
+        <div class="page-header " style="background-color: black;">
             {% if user.is_authenticated %}
-                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus mt-5"></span></a>
+                <a href="{% url 'post_new' %}" class="top-menu mt-4"><span class="glyphicon glyphicon-plus mt-5"></span></a>
             {% endif %}
-            <h1 class="text-center"><a href="/">CriptoNoticias</a></h1>
+            <h1 class="text-center display-3" id="textoPrincipal">CriptoNoticias</h1>
         </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-lg-8 col-md-7">
-                {% block content %}
-                {% endblock %}
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="card" style="width: 27rem;">
-                        <img class="card-img-top" src="https://mk0criptonoticijjgfa.kinstacdn.com/wp-content/uploads/2021/05/staking-cardano-exchange-kraken-350x250.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Staking de Cardano ya está disponible en Kraken</h5>
-                          <p class="card-text">El exchange anunció que la opción está disponible desde el 4 de mayo para clientes con cuentas Starter, Intermediate y Pro.</p>
-                          <a href="https://www.criptonoticias.com/mercados/staking-cardano-ya-disponible-kraken/" class="btn btn-primary" target="_blank">Mas información</a>
-                        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary container-fluid mb-5" style="font-size: large;">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link disabled" href="#" aria-disabled="true">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mas..</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" style="font-size: large;" type="search" placeholder="Buscar noticia" aria-label="Search" id="noticia">
+              <button style="font-size: large;" class="btn btn-outline-dark my-2 my-sm-0" type="submit" id="buscarNoticia" onclick="limpiarFormulario()" >Buscar</button>
+            </form>
+
+          </div>
+        </nav>
+
+        <div class="jumbotron bg-dark mx-5 ">
+          <div class="content container">
+              <div class="row">
+                  <div class=" col-lg-9 col-md-7">
+                  {% block content %}
+                  {% endblock %}
+
+                  <form action="">
+                  <h3 style="color: white;">Envianos tu comentario</h3>
+    
+                  <div class="mb-3">
+                      <label for="exampleFormControlInput1" class="form-label" id="email" style="color: white;"></label>
+                      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email@">
                     </div>
-                    <br>
-                    <div class="card" style="width: 27rem;">
-                        <img class="card-img-top" src="https://mk0criptonoticijjgfa.kinstacdn.com/wp-content/uploads/2021/04/boletin-350x250.jpg.webp" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Cardano y Huobi Token lideran el alza del mercado en medio de la caída de bitcoin</h5>
-                          <p class="card-text">Durante la semana del 9 al 15 de mayo también se apreciaron criptomonedas como Polkadot, Stellar y EOS.</p>
-                          <a href="https://www.criptonoticias.com/mercados/cardano-huobi-token-lideran-alza-mercado-medio-caida-bitcoin/" class="btn btn-primary" target="_blank">Mas información</a>
-                        </div>
+                    <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label"></label>
+                      <textarea class="form-control" id="comentario" rows="4" placeholder="Tu comentario.." ></textarea>
+                      <button id="btnEnviar" onclick="limpiarFormulario()" class="form-control btn btn-secondary mt-3" type="reset" style="font-size: large;">Enviar</button>
                     </div>
-                    <br>
-                    <div class="card " style="width: 27rem;">
-                        <img class="card-img-top" src="https://mk0criptonoticijjgfa.kinstacdn.com/wp-content/uploads/2021/04/Monero-y-Dogecoin-destacan-en-el-top-semanal-en-medio-del-derrumbe-generalizado-del-mercado-350x250.jpg.webp" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Monero y Dogecoin lideran el top semanal en medio del derrumbe generalizado del mercado</h5>
-                          <p class="card-text">Aunque el mercado se tornó rojo durante la semana del 18 al 24 de abril, criptomonedas como Cardano, XRP y Binance Coin despertaron interés.</p>
-                          <a href="https://www.criptonoticias.com/mercados/monero-dogecoin-destacan-top-semanal-en-medio-derrumbe-generalizado-mercado/" class="btn btn-primary" target="_blank">Mas información</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  </form>
+
+                  </div>
+                  <div class=" col-md-5 col-lg-3 ">
+                      <div class="card" style="width: auto auto;">
+                          <img class="card-img-top" src="https://mk0criptonoticijjgfa.kinstacdn.com/wp-content/uploads/2021/05/staking-cardano-exchange-kraken-350x250.jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><b>Staking de Cardano ya está disponible en Kraken </b></h5>
+                            <p class="card-text">El exchange anunció que la opción está disponible desde el 4 de mayo para clientes con cuentas Starter, Intermediate y Pro.</p>
+                            <a href="https://www.criptonoticias.com/mercados/staking-cardano-ya-disponible-kraken/" class="btn btn-dark" target="_blank" style="font-size: large;" id="info">Mas información</a>
+                          </div>
+                      </div>
+
+                      <div class="card" style="width: auto auto;">
+                          <img class="card-img-top" src="https://mk0criptonoticijjgfa.kinstacdn.com/wp-content/uploads/2021/04/boletin-350x250.jpg.webp" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><b>Cardano y Huobi Token lideran el alza del mercado en medio de la caída de bitcoin </b></h5>
+                            <p class="card-text">Durante la semana del 9 al 15 de mayo también se apreciaron criptomonedas como Polkadot, Stellar y EOS.</p>
+                            <a href="https://www.criptonoticias.com/mercados/cardano-huobi-token-lideran-alza-mercado-medio-caida-bitcoin/" id="info2" class="btn btn-dark" target="_blank" style="font-size: large;">Mas información</a>
+                          </div>
+                      </div>
+
+                      <div class="card " style="width: auto auto;">
+                          <img class="card-img-top" src="https://mk0criptonoticijjgfa.kinstacdn.com/wp-content/uploads/2021/04/Monero-y-Dogecoin-destacan-en-el-top-semanal-en-medio-del-derrumbe-generalizado-del-mercado-350x250.jpg.webp" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title"><b> Monero y Dogecoin lideran el top semanal en medio del derrumbe generalizado del mercado</b></h5>
+                            <p class="card-text">Aunque el mercado se tornó rojo durante la semana del 18 al 24 de abril, criptomonedas como Cardano, XRP y Binance Coin despertaron interés.</p>
+                            <a href="https://www.criptonoticias.com/mercados/monero-dogecoin-destacan-top-semanal-en-medio-derrumbe-generalizado-mercado/" id="info3" class="btn btn-dark" target="_blank" style="font-size: large;">Mas información</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
-        <div>
-            <footer class="page-footer font-small">
-                <div class="footer-copyright text-center py-3"  id="footer">© 2020 Copyright:
-                <a href="">www.CriptoNoticias.com</a>
+        <div >
+            <footer class="page-footer font-small ">
+                <div class="footer-copyright text-center py-3"  id="footer" style="background-color: black; color: white;">© 2020 Copyright:
+                <a style="color: white;" href="">www.CriptoNoticias.com</a>
                 </div>
             </footer>
         </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script> 
 
+      //EFECTOS Y ANIMACIONES
+      $("#textoPrincipal").mouseover(function(){           
+      $("h1").animate({fontSize: '5em'}, "slow");
+      $("h1").css({textAlign: 'center'}); 
+      });
+
+      $("#textoPrincipal").mouseleave(function(){
+      $("h1").animate({fontSize: '4em'});  
+      }); 
+        
+
+      $("#btnEnviar").click(function(){
+
+      var comentario = $("#comentario");
+      if (comentario.val() == "" || /\d/.test(comentario.val())){
+        swal("Por favor, introduzca un comentario valido. Gracias" , "" , "error");
+        comentario.focus();
+        return false;            
+      }
+      else
+        swal("Muchas gracias" , "Comentario enviado con exito" , "success");  
+      });
+
+      function limpiarFormulario() {
+        document.getElementById("miForm").reset();
+      }
+
+      $("#buscarNoticia").click(function(){
+        var noticia = $("#noticia");
+        if(noticia.val() == "")
+        {
+          swal("Error", "No se ha encontrado nada", "error")
+          return false;
+        }
+        else
+        {
+          swal("Error", "En este momento nuestro buscador no funciona", "error")
+          return false;
+        }
+      })
+
+      $("#info").click(function(){
+        swal("Advertencia" , "La siguiente informacion es de una fuente externa" , "info");
+      })
+      $("#info2").click(function(){
+        swal("Advertencia" , "La siguiente informacion es de una fuente externa" , "info");
+      })
+      $("#info3").click(function(){
+        swal("Advertencia" , "La siguiente informacion es de una fuente externa" , "info");
+      })
+    
+    </script>
     </body>
 </html>
